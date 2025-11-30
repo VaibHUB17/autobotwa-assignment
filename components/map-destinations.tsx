@@ -122,7 +122,7 @@ export function MapDestinations() {
           {/* Content Section */}
           <div className="space-y-6">
             {/* Airplane decoration */}
-            <div className="flex items-center justify-end mb-8">
+            <div className="flex items-center justify-centre mb-8">
               <Image 
                 src="/airplane-trail.png" 
                 alt="Airplane with trail" 
@@ -151,7 +151,7 @@ export function MapDestinations() {
             {/* Google Maps Logo */}
             <div className="pt-6">
               <div className="inline-flex items-center gap-3 bg-gray-50 px-6 py-3 rounded-full">
-                <img></img>
+                <img src="/google-maps-icon.png" alt="Google Maps" width={32} height={32} className="w-8 h-8" />
                 <span className="text-2xl font-semibold text-gray-700">Google Maps</span>
               </div>
             </div>
