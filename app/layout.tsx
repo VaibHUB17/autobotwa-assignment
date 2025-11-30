@@ -18,25 +18,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "TripEase - AI Powered Travel Planner",
   description:
-    "Plan Smart. Travel Smarter. TripEase uses AI to create personalized itineraries, budget plans, and curated experiences for your next trip.",
-  generator: "v0.app",
-  icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
-  },
+    "Plan Smart. Travel Smarter. TripEase uses AI to create personalized itineraries, budget plans, and curated experiences for your next trip.", 
 }
 
 export default function RootLayout({
