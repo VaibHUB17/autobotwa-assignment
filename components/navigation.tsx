@@ -10,26 +10,14 @@ export function Navigation() {
 
   return (
     <nav className="absolute top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-16 xl:px-20 py-4 sm:py-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="w-5 h-5 sm:w-7 sm:h-7 text-teal-600"
-              >
-                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
-                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
-              </svg>
-            </div>
+          <div className="flex items-center gap-3">
           </div>
 
           {/* Navigation Links - Desktop */}
-          <div className="hidden lg:flex items-center gap-8 xl:gap-12">
+          <div className="hidden lg:flex items-center gap-8 xl:gap-12 absolute left-4 sm:left-6 lg:left-16 xl:left-20 top-1/2 -translate-y-1/2">
             <a href="#home" className="text-white font-medium hover:text-teal-300 transition-colors text-sm xl:text-base">
               Home
             </a>

@@ -167,16 +167,16 @@ export function Hero() {
                   >
                     {destinations.map((destination) => (
                       <div key={destination.id} className="w-full shrink-0">
-                        <div className="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow">
-                          <div className="relative h-48 sm:h-56 lg:h-64 xl:h-72">
+                        <div className="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow h-full flex flex-col">
+                          <div className="relative h-48 sm:h-56 lg:h-64 xl:h-72 shrink-0">
                             <img src={destination.image} alt={destination.alt} className="w-full h-full object-cover" />
                           </div>
-                          <div className="p-3 sm:p-4 lg:p-5 xl:p-6 space-y-2 sm:space-y-3 lg:space-y-4">
+                          <div className="p-3 sm:p-4 lg:p-5 xl:p-6 space-y-2 sm:space-y-3 lg:space-y-4 flex flex-col flex-1">
                             <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-slate-800">{destination.title}</h3>
-                            <p className="text-slate-600 text-xs sm:text-sm lg:text-base xl:text-lg leading-relaxed">
+                            <p className="text-slate-600 text-xs sm:text-sm lg:text-base xl:text-lg leading-relaxed flex-1">
                               {destination.description}
                             </p>
-                            <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white py-1.5 sm:py-2 lg:py-3 text-xs sm:text-sm lg:text-base">
+                            <Button className="w-full bg-teal-600 hover:bg-teal-700 text-white py-1.5 sm:py-2 lg:py-3 text-xs sm:text-sm lg:text-base mt-auto">
                               READ MORE
                               <ChevronRight className="ml-2 w-3 h-3 lg:w-4 lg:h-4 xl:w-5 xl:h-5" />
                             </Button>
@@ -195,9 +195,9 @@ export function Hero() {
                     <button
                       key={index}
                       onClick={() => goToSlide(index)}
-                      className={`w-3 h-3 lg:w-4 lg:h-4 xl:w-5 xl:h-5 rounded-full transition-all duration-300 ${
+                      className={`w-1 h-1 lg:w-3 lg:h-3 xl:w-3 xl:h-3 rounded-full transition-all duration-300 ${
                         index === currentSlide
-                          ? 'bg-white scale-110 lg:scale-125'
+                          ? 'bg-white scale-110'
                           : 'bg-white/50 hover:bg-white/70'
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
