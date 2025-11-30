@@ -1,30 +1,18 @@
-# TripEase landing page
+# TripEase Landing Page
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+## Vercel v0 Components
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/vaibhub17s-projects/v0-trip-ease-landing-page)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/h05M2PAYXXm)
+**UI Foundation Built with v0:**
+- **Shadcn/UI Components**: Button, Card, Input, Label, Textarea, and Avatar components were generated using Vercel v0's shadcn/ui integration
+- **Navigation Component**: Responsive navigation bar with mobile menu, search functionality, and glassmorphism effects
+- **Hero Section**: Complex hero layout with carousel functionality, social media icons, and responsive design patterns
+- **Features Section**: Three-column feature showcase with hover animations and gradient card designs
+- **Footer Component**: Clean footer layout with social links and proper responsive grid structure
 
-## Overview
+**Key v0 Generated Features:**
+- Tailwind CSS utility classes and responsive breakpoints
+- Component composition patterns using React hooks (useState, useEffect)
+- Accessible button variants and interactive states
+- Mobile-first responsive design approach with comprehensive breakpoint coverage
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
-
-## Deployment
-
-Your project is live at:
-
-**[https://vercel.com/vaibhub17s-projects/v0-trip-ease-landing-page](https://vercel.com/vaibhub17s-projects/v0-trip-ease-landing-page)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/h05M2PAYXXm](https://v0.app/chat/h05M2PAYXXm)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+The core UI structure, component architecture, and styling patterns were generated through Vercel v0, then customized for the TripEase brand and enhanced with additional interactive features.
