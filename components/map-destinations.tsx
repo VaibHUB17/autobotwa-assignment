@@ -59,7 +59,7 @@ export function MapDestinations() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Map Section */}
           <div className="relative">
-            <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full aspect-4/3 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl">
               {/* Map Background */}
               <Image src="/europe-map-new.png" alt="Map of Europe" fill className="object-cover" />
 
@@ -68,11 +68,11 @@ export function MapDestinations() {
                 <button
                   key={destination.id}
                   onClick={() => setSelectedDestination(destination)}
-                  className="absolute w-8 h-8 -ml-4 -mt-8 group"
+                  className="absolute w-6 h-6 sm:w-8 sm:h-8 -ml-3 sm:-ml-4 -mt-6 sm:-mt-8 group touch-manipulation"
                   style={{ top: destination.position.top, left: destination.position.left }}
                 >
                   <div className="relative">
-                    <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8 transition-transform group-hover:scale-125">
+                    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6 sm:w-8 sm:h-8 transition-transform group-hover:scale-125">
                       <path
                         d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
                         fill="#EF4444"
@@ -89,10 +89,10 @@ export function MapDestinations() {
               {/* Destination Card Popup */}
               {selectedDestination && (
                 <div
-                  className="absolute bg-white rounded-xl shadow-2xl overflow-hidden w-72 animate-in fade-in zoom-in duration-200"
+                  className="absolute bg-white rounded-xl shadow-2xl overflow-hidden w-64 sm:w-72 md:w-80 max-w-[90vw] animate-in fade-in zoom-in duration-200 z-20"
                   style={{
-                    top: "20%",
-                    left: "25%",
+                    top: "10%",
+                    left: "50%",
                     transform: "translate(-50%, 0)",
                   }}
                 >
@@ -102,7 +102,7 @@ export function MapDestinations() {
                   >
                     <X className="w-4 h-4" />
                   </button>
-                  <div className="relative h-40">
+                  <div className="relative h-32 sm:h-40">
                     <Image
                       src={selectedDestination.image || "/placeholder.svg"}
                       alt={selectedDestination.name}
@@ -110,9 +110,9 @@ export function MapDestinations() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-serif text-2xl mb-2">{selectedDestination.name}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{selectedDestination.description}</p>
+                  <div className="p-3 sm:p-4">
+                    <h3 className="font-serif text-lg sm:text-xl md:text-2xl mb-2">{selectedDestination.name}</h3>
+                    <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{selectedDestination.description}</p>
                   </div>
                 </div>
               )}

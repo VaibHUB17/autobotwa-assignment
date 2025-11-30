@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { ChevronRight, ChevronLeft, Twitter, Facebook, Instagram, Youtube } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
+import useEmblaCarousel from 'embla-carousel-react'
 
 interface DestinationCard {
   id: number
@@ -37,31 +38,56 @@ const destinations: DestinationCard[] = [
 ]
 
 export function Hero() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'start',
+    skipSnaps: false,
+    dragFree: false,
+    containScroll: 'trimSnaps'
+  })
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setCurrentSlide(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+
+    onSelect()
+    emblaApi.on('reInit', onSelect)
+    emblaApi.on('select', onSelect)
+
+    return () => {
+      emblaApi.off('reInit', onSelect)
+      emblaApi.off('select', onSelect)
+    }
+  }, [emblaApi, onSelect])
+
   // Auto-play functionality
   useEffect(() => {
-    if (!isAutoPlaying) return
+    if (!isAutoPlaying || !emblaApi) return
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % destinations.length)
+      emblaApi.scrollNext()
     }, 4000)
 
     return () => clearInterval(interval)
-  }, [isAutoPlaying])
+  }, [isAutoPlaying, emblaApi])
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % destinations.length)
-  }
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + destinations.length) % destinations.length)
-  }
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
+  const scrollTo = useCallback((index: number) => {
+    if (emblaApi) emblaApi.scrollTo(index)
+  }, [emblaApi])
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden" id="home">
@@ -157,16 +183,14 @@ export function Hero() {
               <div className="relative">
                 {/* Carousel Container */}
                 <div 
-                  className="relative overflow-hidden rounded-lg"
+                  className="overflow-hidden rounded-lg"
+                  ref={emblaRef}
                   onMouseEnter={() => setIsAutoPlaying(false)}
                   onMouseLeave={() => setIsAutoPlaying(true)}
                 >
-                  <div 
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                  >
+                  <div className="flex">
                     {destinations.map((destination) => (
-                      <div key={destination.id} className="w-full shrink-0">
+                      <div key={destination.id} className="flex-[0_0_100%] min-w-0">
                         <div className="bg-white rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-shadow h-full flex flex-col">
                           <div className="relative h-48 sm:h-56 lg:h-64 xl:h-72 shrink-0">
                             <img src={destination.image} alt={destination.alt} className="w-full h-full object-cover" />
@@ -188,13 +212,27 @@ export function Hero() {
                 </div>
 
                 {/* Navigation Arrows */}
+                <button
+                  onClick={scrollPrev}
+                  className="absolute left-2 lg:left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-slate-700 rounded-full p-2 lg:p-3 shadow-lg transition-all duration-200 hover:scale-110"
+                  aria-label="Previous destination"
+                >
+                  <ChevronLeft className="w-4 h-4 lg:w-5 lg:h-5" />
+                </button>
+                <button
+                  onClick={scrollNext}
+                  className="absolute right-2 lg:right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-slate-700 rounded-full p-2 lg:p-3 shadow-lg transition-all duration-200 hover:scale-110"
+                  aria-label="Next destination"
+                >
+                  <ChevronRight className="w-4 h-4 lg:w-5 lg:h-5" />
+                </button>
 
                 {/* Dots Indicator */}
                 <div className="flex justify-center space-x-2 lg:space-x-3 xl:space-x-4 mt-4 lg:mt-6">
                   {destinations.map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => goToSlide(index)}
+                      onClick={() => scrollTo(index)}
                       className={`w-1 h-1 lg:w-3 lg:h-3 xl:w-3 xl:h-3 rounded-full transition-all duration-300 ${
                         index === currentSlide
                           ? 'bg-white scale-110'
